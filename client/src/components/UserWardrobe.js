@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import UserWardrobeItem from './UserWardrobeItem';
+import Userreviews from './Userreviews';
 import axios from 'axios';
 
 class UserWardrobe extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: ''
+      name: '',
+      userRating: '',
     }
     this.fetch = this.fetch.bind(this);
   }
@@ -18,7 +21,7 @@ class UserWardrobe extends Component {
   fetch() {
     axios.get(`/api/user/owner/${this.props.getThisUser}`)
     .then(user => {
-      this.setState({ name: user.data.userName });
+      this.setState({ name: user.data.userName, userRating: user.data.userRating });
     })
     .catch(err => {
       console.log('User fetch err:', err);
@@ -38,6 +41,9 @@ class UserWardrobe extends Component {
             }
           ).reverse()}
         </div>
+        <BrowserRouter>
+          <Userreviews userRating={this.state.userRating} />
+        </BrowserRouter>
       </div>
     );
   }
