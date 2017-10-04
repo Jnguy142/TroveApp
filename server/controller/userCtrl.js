@@ -26,7 +26,8 @@ module.exports = {
   addUser: (req, res) => {
     User.create({
       userName: req.body.userName,
-      userEmail: req.body.userEmail
+      userEmail: req.body.userEmail,
+      userRating: 0
     })
     .then((data) => {
       res.status(201).send(data)

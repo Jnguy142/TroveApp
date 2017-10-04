@@ -143,7 +143,8 @@ class App extends Component {
           console.log('signed up')
           axios.post('/api/user', {
             userName: newName,
-            userEmail: newEmail
+            userEmail: newEmail,
+            userRating: 0,
           })
           .then(({data}) => {
             this.setState({

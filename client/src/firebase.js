@@ -2,12 +2,12 @@ import firebase from 'firebase'
 
 // Initialize Firebase
 const config = {
-  apiKey: "AIzaSyC2rf7NT_vVD9E7-CFAPAsLExJG0IPGxf8",
-  authDomain: "trove-app.firebaseapp.com",
-  databaseURL: "https://trove-app.firebaseio.com",
-  projectId: "trove-app",
-  storageBucket: "trove-app.appspot.com",
-  messagingSenderId: "50556960736"
+  apiKey: "AIzaSyB4q1cKg6WfSg_JPpANjz70aT1W3jB_B28",
+  authDomain: "trove-legacy.firebaseapp.com",
+  databaseURL: "https://trove-legacy.firebaseio.com",
+  projectId: "trove-legacy",
+  storageBucket: "trove-legacy.appspot.com",
+  messagingSenderId: "707797705319"
 }; 
 
 firebase.initializeApp(config);

@@ -88,6 +88,7 @@ module.exports = [
     sex: 'F',
     tag: '["lace", "dress", "jeweled", "ruffle"]',
     status: 'Available'
+    
   },
   {
     rentee_id: 2,
