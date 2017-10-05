@@ -274,7 +274,7 @@ class App extends Component {
               <UserWardrobe 
               passItems={this.state.allItems}
               getThisUser={this.state.checkThisUser}
-              user={this.state.user}
+              user_email={this.state.user.email}
                />)} />
             <Route render={function() {
 								return (
