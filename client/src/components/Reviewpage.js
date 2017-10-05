@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Comment from './Comments'
+import Reviewform from './Reviewform'
 
 class Reviewpage extends React.Component {
     constructor(props) {
@@ -35,6 +36,7 @@ class Reviewpage extends React.Component {
                 {this.state.reviews.map((comment) => {
                   return (<Comment key={comment.reviewee_id} comment={comment.message} reviewee_id={comment.reviewee_id}/>);
                 })}
+                <Reviewform user_email={this.props.user_email}/>
             </div>
         )
     }
