@@ -3,7 +3,10 @@ import React from 'react';
 var Comment = (props) => {
   return (
     <div>
-      COMMENT COMPONENT
+      <p>
+        <span>{props.reviewee_id}  </span>
+        {props.comment}
+      </p>
     </div>
   )
 }

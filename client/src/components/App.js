@@ -273,7 +273,9 @@ class App extends Component {
             <Route exact path='/userwardrobe' component={() => (
               <UserWardrobe 
               passItems={this.state.allItems}
-              getThisUser={this.state.checkThisUser} />)} />
+              getThisUser={this.state.checkThisUser}
+              user={this.state.user}
+               />)} />
             <Route render={function() {
 								return (
                   <div className='fourofour-section'>

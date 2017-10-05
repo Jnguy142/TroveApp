@@ -37,7 +37,16 @@ module.exports = {
     });
   },
   getReviews: (req, res) => {
-    res.status(200).send('here are your comments');
+    Reviews.findAll({ where: { rentee_id: req.params.rentee_id} })
+    .then((queriedinfo) => {
+      var data = [];
+      for(var i = 0; i < queriedinfo.length; i++) {
+        data.push({
+          message: queriedinfo[i].dataValues.comment, 
+          reviewee_id: queriedinfo[i].dataValues.reviewee_id});
+      }
+      res.status(200).send(data);
+    })
   },
   postReview: (req, res) => {
     res.status(201).send('successfully posted to server');

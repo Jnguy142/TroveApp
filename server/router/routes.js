@@ -14,7 +14,7 @@ router.route('/item/:id')
 router.route('/user')
   .post(userCtrl.addUser);
 
-router.route('/user/reviews')
+router.route('/user/reviews/:rentee_id')
   .get(userCtrl.getReviews);
 
 router.route('/user/:userEmail')

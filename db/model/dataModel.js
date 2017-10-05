@@ -91,7 +91,11 @@ const Reviews = db.define('Reviews', {
   comment: {
     type: Sequelize.STRING,
     allowNull: false,
-  }
+  },
+  reviewee_id: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
 }, {
   timestamps: false
 });

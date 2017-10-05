@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Comment from './Comments'
 
 class Reviewpage extends React.Component {
     constructor(props) {
@@ -8,27 +9,32 @@ class Reviewpage extends React.Component {
       this.state = {
         reviews: [],
       };
+      this.fetch = this.fetch.bind(this);
   }
 
     componentDidMount() {
-      //axios call
       this.fetch();
     }
 
-    fetch() {
-      axios.get('/api/user/reviews')
+    fetch () {
+      axios({
+        method: 'get',
+        url: `/api/user/reviews/${this.props.user_id}`,
+      })
       .then((reviews) => {
-        console.log(reviews.data);
+        this.setState({reviews: reviews.data});
       })
       .catch(err => {
         console.log('Fetch err:', err);
-      })
+      });
     }
 
     render () {
         return (
             <div>
-                ALL THE USER's REVIEWS GO HERE
+                {this.state.reviews.map((comment) => {
+                  return (<Comment key={comment.reviewee_id} comment={comment.message} reviewee_id={comment.reviewee_id}/>);
+                })}
             </div>
         )
     }
