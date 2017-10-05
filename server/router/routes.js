@@ -14,6 +14,9 @@ router.route('/item/:id')
 router.route('/user')
   .post(userCtrl.addUser);
 
+router.route('/user/reviews')
+  .get(userCtrl.getReviews);
+
 router.route('/user/:userEmail')
   .get(userCtrl.getUser);
 

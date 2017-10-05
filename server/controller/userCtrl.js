@@ -1,4 +1,4 @@
-const { User } = require('../../db/model/dataModel');
+const { User, Reviews } = require('../../db/model/dataModel');
 
 module.exports = {
   getUser: (req, res) => {
@@ -35,5 +35,11 @@ module.exports = {
     .catch((err) => {
       res.status(404).send(err)
     });
+  },
+  getReviews: (req, res) => {
+    res.status(200).send('here are your comments');
+  },
+  postReview: (req, res) => {
+    res.status(201).send('successfully posted to server');
   }
 }
