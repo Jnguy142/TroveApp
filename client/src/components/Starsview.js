@@ -1,16 +1,17 @@
 import React from 'react'
+import {ProgressBar} from 'react-bootstrap';
 
 var Starsview = (props) => {
   return (
     <div id="stars-view">
       {props.avg} STARS
-      <ul>
-        <li>1 : {props.ratings[1]}</li>
-        <li>2 : {props.ratings[2]}</li>
-        <li>3 : {props.ratings[3]}</li>
-        <li>4 : {props.ratings[4]}</li>
-        <li>5 : {props.ratings[5]}</li>
-      </ul>
+      <div>
+        1 Stars: <ProgressBar striped bsStyle="success" now={40} />
+        2 Stars: <ProgressBar striped bsStyle="info" now={20} />
+        3 Stars: <ProgressBar striped bsStyle="warning" now={60} />
+        4 Stars: <ProgressBar striped bsStyle="warning" now={60} />
+        5 Stars: <ProgressBar striped bsStyle="danger" now={80} />
+      </div>
     </div>
   )
 };

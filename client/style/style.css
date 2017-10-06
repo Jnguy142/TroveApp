@@ -931,3 +931,14 @@ hr {
   background-position: left, center, right;
   padding-bottom: 15%;
 }
+
+#review-form-grid {
+  margin-right: 0px;
+  margin-left: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#submit-review {
+  line-height: 2;
+}
