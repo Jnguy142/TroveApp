@@ -26,9 +26,11 @@ class Reviewform extends React.Component {
         reviewee_email: this.props.user_email,
       }
     }).then( (response) => {
-        if (response.data) {    
+        if (response.data === 0) {    
           alert('You successfully posted a review');
-        } else { 
+        } else if (response.data === 1) {
+          alert('You can only review a user once, buster');
+        }else { 
           alert('You cannot give yourself a review, Kiddo');
         }
       })

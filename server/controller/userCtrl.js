@@ -73,16 +73,28 @@ module.exports = {
       if(parseInt(user.dataValues.id) === parseInt(req.params.rentee_id)) {
         res.status(201).send('0');
       } else {
-        Reviews.create({
-          rentee_id: req.params.rentee_id,
-          reviewee_id: user_name,
-          comment: req.body.comment,
-        })
-        .then((created) => {
-          res.status(201).send(created.dataValues);
+        Reviews.findOne({ where: {
+          rentee_id: req.params.rentee_id, 
+          reviewee_id: req.body.reviewee_email} 
+        }).then( (reviewInfo) => {
+          if (reviewInfo) {
+            Reviews.create({
+              rentee_id: req.params.rentee_id,
+              reviewee_id: user_name,
+              comment: req.body.comment,
+            })
+            .then((created) => {
+              res.status(201).send(created.dataValues);
+            })
+            .catch((err) => {
+              res.status(404).send('unable to store comment in database');
+            })
+          } else {
+            res.status(201).send('1')
+          }
         })
         .catch((err) => {
-          res.status(404).send('unable to store comment in database');
+          res.status(404).send('error when querying database')
         })
       }
     })
