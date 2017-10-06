@@ -20,7 +20,7 @@ class Reviewpage extends React.Component {
     fetch () {
       axios({
         method: 'get',
-        url: `/api/user/reviews/${this.props.user_id}`,
+        url: `/api/user/reviews/${this.props.wardrobe_user_id}`,
       })
       .then((reviews) => {
         this.setState({reviews: reviews.data});
@@ -36,7 +36,7 @@ class Reviewpage extends React.Component {
                 {this.state.reviews.map((comment) => {
                   return (<Comment key={comment.reviewee_id} comment={comment.message} reviewee_id={comment.reviewee_id}/>);
                 })}
-                <Reviewform user_email={this.props.user_email}/>
+                <Reviewform user_email={this.props.user_email} wardrobe_user_id={this.props.wardrobe_user_id}/>
             </div>
         )
     }

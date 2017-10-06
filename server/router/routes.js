@@ -15,7 +15,8 @@ router.route('/user')
   .post(userCtrl.addUser);
 
 router.route('/user/reviews/:rentee_id')
-  .get(userCtrl.getReviews);
+  .get(userCtrl.getReviews)
+  .post(userCtrl.postReview);
 
 router.route('/user/:userEmail')
   .get(userCtrl.getUser);

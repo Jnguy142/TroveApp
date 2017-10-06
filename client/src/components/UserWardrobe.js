@@ -42,7 +42,7 @@ class UserWardrobe extends Component {
           ).reverse()}
         </div>
         <BrowserRouter>
-          <Userreviews user_email={this.props.user_email} user_id={this.props.getThisUser} />
+          <Userreviews user_email={this.props.user_email} wardrobe_user_id={this.props.getThisUser} />
         </BrowserRouter>
       </div>
     );

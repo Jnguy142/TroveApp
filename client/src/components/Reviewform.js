@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class Reviewform extends React.Component {
   constructor(props) {
@@ -7,9 +8,14 @@ class Reviewform extends React.Component {
 
   onClickHandler (event) {
     var comment = document.getElementById("user-review").value;
-    document.getElementById("user-review").value = "";
-    console.log(comment);
     event.preventDefault();
+  }
+
+  postReview (comment) {
+    axios({
+      method:'post',
+      url:'api/user/reviews',
+    })
   }
 
   render () {
