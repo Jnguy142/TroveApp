@@ -49,6 +49,25 @@ module.exports = {
     })
   },
   postReview: (req, res) => {
-    res.status(201).send('successfully posted to server');
+    User.findOne({
+      where: {
+        userEmail: req.body.reviewee_email,
+      }
+    })
+    .then((user) => {
+      var user_name = user.dataValues.userName;
+      Reviews.create({
+        rentee_id: req.params.rentee_id,
+        reviewee_id: user_name,
+        comment: req.body.comment,
+      })
+      .then((created) => {
+        res.status(201).send(created.dataValues);
+      })
+      .catch((err) => {
+        res.status(404).send('unable to store comment in database');
+      })
+    })
+    .catch(err => res.status(404).send(err))
   }
 }

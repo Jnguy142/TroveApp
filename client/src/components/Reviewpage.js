@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import Comment from './Comments'
-import Reviewform from './Reviewform'
+import Comment from './Comments';
+import Reviewform from './Reviewform';
+import Starsview from './Starsview';
 
 class Reviewpage extends React.Component {
     constructor(props) {
@@ -31,10 +32,13 @@ class Reviewpage extends React.Component {
     }
 
     render () {
+        var key = 0;
         return (
-            <div>
-                {this.state.reviews.map((comment) => {
-                  return (<Comment key={comment.reviewee_id} comment={comment.message} reviewee_id={comment.reviewee_id}/>);
+            <div id="review-component">
+                <Starsview />
+                { this.state.reviews.map((comment) => {
+                  key = key + 1;
+                  return (<Comment key={key} comment={comment.message} reviewee_id={comment.reviewee_id}/>);
                 })}
                 <Reviewform user_email={this.props.user_email} wardrobe_user_id={this.props.wardrobe_user_id}/>
             </div>
