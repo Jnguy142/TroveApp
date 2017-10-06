@@ -77,7 +77,7 @@ module.exports = {
           rentee_id: req.params.rentee_id, 
           reviewee_id: req.body.reviewee_email} 
         }).then( (reviewInfo) => {
-          if (reviewInfo) {
+          if (reviewInfo === null) {
             Reviews.create({
               rentee_id: req.params.rentee_id,
               reviewee_id: user_name,

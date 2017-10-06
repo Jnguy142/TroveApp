@@ -27,11 +27,11 @@ class Reviewform extends React.Component {
       }
     }).then( (response) => {
         if (response.data === 0) {    
-          alert('You successfully posted a review');
+          alert('You cannot give yourself a review, Kiddo');
         } else if (response.data === 1) {
           alert('You can only review a user once, buster');
         }else { 
-          alert('You cannot give yourself a review, Kiddo');
+          alert('You successfully posted a review');
         }
       })
       .catch((err) => {
