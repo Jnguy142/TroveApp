@@ -75,7 +75,7 @@ module.exports = {
       } else {
         Reviews.findOne({ where: {
           rentee_id: req.params.rentee_id, 
-          reviewee_id: req.body.reviewee_email} 
+          reviewee_id: user_name,} 
         }).then( (reviewInfo) => {
           if (reviewInfo === null) {
             Reviews.create({
