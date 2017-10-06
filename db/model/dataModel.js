@@ -5,6 +5,8 @@ const itemData = require('../../seeding/itemData');
 const rentedData = require('../../seeding/rentedData');
 const userData = require('../../seeding/userSeedData');
 const reviewData = require('../../seeding/reviewData');
+const ratingData = require('../../seeding/ratingdata');
+
 
 
 const User = db.define('User', {
@@ -16,10 +18,6 @@ const User = db.define('User', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  userRating: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  }
 }, {
   timestamps: false
 })
@@ -100,6 +98,23 @@ const Reviews = db.define('Reviews', {
   timestamps: false
 });
 
+const Ratings = db.define('Ratings', {
+  Reviewer_email: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  Reviewee_id: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
+  Rating: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  }
+}, {
+    timestamps: false
+});
+
 User.hasMany(Item, { foreignKey: { name: 'rentee_id' }, onDelete: 'CASCADE' })
 User.hasMany(Reviews, { foreignKey: { name: 'rentee_id'}, onDelete: 'CASCADE'})
 Item.belongsTo(User, { foreignKey: { name: 'rentee_id' }, onDelete: 'CASCADE' })
@@ -110,22 +125,24 @@ Item.hasOne(Rent_trx, {foreignKey: {name: 'item_id'}, onDelete:'CASCADE'})
 // User.hasOne(Rent_trx, {foreignKey: {name: 'rentee_id'}, onDelete:'CASCADE'})
 
 
-db.sync();
+//db.sync();
 
 // Seeding
-// db.sync({force: true})
-// .then(() => seed(User, userData, "User"))
-// .then(() => seed(Item, itemData, "Item"))
-// .then(() => seed(Rent_trx, rentedData, "Rent_trx"))
-// .then(() => seed(Reviews, reviewData, "Reviews"))
-// .catch(err => {
-//     console.log('seeding error in model')
-// })
+db.sync({force: true})
+.then(() => seed(User, userData, "User"))
+.then(() => seed(Item, itemData, "Item"))
+.then(() => seed(Rent_trx, rentedData, "Rent_trx"))
+.then(() => seed(Reviews, reviewData, "Reviews"))
+.then(() => seed(Ratings, ratingData, "Ratings"))
+.catch(err => {
+    console.log('seeding error in model')
+})
 
 module.exports = {
   User,
   Item,
   Rent_trx,
   Reviews,
+  Ratings,
 }
 

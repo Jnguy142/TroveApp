@@ -1,7 +1,7 @@
 module.exports = (table, seedData, tableName) => {
-    table.bulkCreate(seedData)
+    return table.bulkCreate(seedData)
     .then(() => {
       console.log(`data successfully seeded for ${tableName}`);
     })
-    .catch(err => console.log(`error seeding data for ${tableName}`, err));
+    .catch(err => console.log(`error seeding data for ${tableName}`));
 };

@@ -10,6 +10,7 @@ class Reviewpage extends React.Component {
       
       this.state = {
         reviews: [],
+        rating: {},
       };
       this.fetch = this.fetch.bind(this);
   }
@@ -23,8 +24,8 @@ class Reviewpage extends React.Component {
         method: 'get',
         url: `/api/user/reviews/${this.props.wardrobe_user_id}`,
       })
-      .then((reviews) => {
-        this.setState({reviews: reviews.data});
+      .then((reviewsInfo) => {
+        this.setState({reviews: reviewsInfo.data.reviews});
       })
       .catch(err => {
         console.log('Fetch err:', err);
