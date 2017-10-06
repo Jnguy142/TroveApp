@@ -39,18 +39,24 @@ module.exports = {
   getReviews: (req, res) => {
     Reviews.findAll({ where: { rentee_id: req.params.rentee_id} })
     .then((queriedinfo) => {
-      var data = {reviews:[]};
+      var data = { reviews: [], ratings: { 1:0, 2:0, 3:0, 4:0, 5:0 } };
       for(var i = 0; i < queriedinfo.length; i++) {
         data.reviews.push({
           message: queriedinfo[i].dataValues.comment, 
           reviewee_id: queriedinfo[i].dataValues.reviewee_id});
       }
-        Ratings.findAll({ where: { reviewee_id: req.params.rentee_id } })
-        .then(() => {
-          console.log('get ratings success');
-        })
-        .catch((err) => res.status.send('error getting ratings'))
-      res.status(200).send(data);
+      Ratings.findAll({ where: { Reviewee_id: req.params.rentee_id } })
+      .then((ratingInfo) => {
+        for( var i = 0; i < ratingInfo.length; i++ ) {
+          var rating = ratingInfo[i].dataValues.Rating;
+          console.log(rating);
+          data.ratings[rating]++;
+        }
+        console.log(data.ratings);
+        res.status(200).send(data);
+      })
+      .catch((err) => res.status(404).send('error getting ratings'))
+      
     })
     .catch((err) => {
       res.status(404).send('unable to find reviews')
@@ -64,17 +70,21 @@ module.exports = {
     })
     .then((user) => {
       var user_name = user.dataValues.userName;
-      Reviews.create({
-        rentee_id: req.params.rentee_id,
-        reviewee_id: user_name,
-        comment: req.body.comment,
-      })
-      .then((created) => {
-        res.status(201).send(created.dataValues);
-      })
-      .catch((err) => {
-        res.status(404).send('unable to store comment in database');
-      })
+      if(parseInt(user.dataValues.id) === parseInt(req.params.rentee_id)) {
+        res.status(201).send('0');
+      } else {
+        Reviews.create({
+          rentee_id: req.params.rentee_id,
+          reviewee_id: user_name,
+          comment: req.body.comment,
+        })
+        .then((created) => {
+          res.status(201).send(created.dataValues);
+        })
+        .catch((err) => {
+          res.status(404).send('unable to store comment in database');
+        })
+      }
     })
     .catch(err => res.status(404).send(err))
   }

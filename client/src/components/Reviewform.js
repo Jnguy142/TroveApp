@@ -26,9 +26,13 @@ class Reviewform extends React.Component {
         reviewee_email: this.props.user_email,
       }
     }).then( (response) => {
-      console.log(response.data);
-    })
-    .catch((err) => {
+        if (response.data) {    
+          alert('You successfully posted a review');
+        } else { 
+          alert('You cannot give yourself a review, Kiddo');
+        }
+      })
+      .catch((err) => {
       console.log('error posting comment')
     }) 
   }

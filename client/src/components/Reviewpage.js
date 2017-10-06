@@ -11,6 +11,7 @@ class Reviewpage extends React.Component {
       this.state = {
         reviews: [],
         rating: {},
+        avg: 0,
       };
       this.fetch = this.fetch.bind(this);
   }
@@ -25,7 +26,22 @@ class Reviewpage extends React.Component {
         url: `/api/user/reviews/${this.props.wardrobe_user_id}`,
       })
       .then((reviewsInfo) => {
-        this.setState({reviews: reviewsInfo.data.reviews});
+        var avg = 0;
+        var denom = 0;
+        var key = '';
+        var ratings = reviewsInfo.data.ratings;
+        for (key in ratings) {
+          avg = avg + parseInt(key) * ratings[key];
+          denom = denom + ratings[key];
+        }
+        denom = denom === 0 ? 1 : denom;
+        avg = (avg / denom).toFixed(2);
+        console.log(avg);
+        this.setState({
+          reviews: reviewsInfo.data.reviews,
+          rating: ratings,
+          avg: avg,
+        });
       })
       .catch(err => {
         console.log('Fetch err:', err);
@@ -36,7 +52,7 @@ class Reviewpage extends React.Component {
         var key = 0;
         return (
             <div id="review-component">
-                <Starsview />
+                <Starsview ratings={this.state.rating}/>
                 { this.state.reviews.map((comment) => {
                   key = key + 1;
                   return (<Comment key={key} comment={comment.message} reviewee_id={comment.reviewee_id}/>);
