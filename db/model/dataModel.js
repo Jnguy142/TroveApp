@@ -87,7 +87,7 @@ const Rent_trx = db.define('Rent_trx', {
 
 const Reviews = db.define('Reviews', {
   comment: {
-    type: Sequelize.STRING,
+    type: Sequelize.STRING(1000),
     allowNull: false,
   },
   reviewee_id: {

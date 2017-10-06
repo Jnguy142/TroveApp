@@ -1,17 +1,17 @@
-import React from 'react'
+import React from 'react';
 import {ProgressBar} from 'react-bootstrap';
+import Starprog from './Starprog';
 
 var Starsview = (props) => {
+  var key = "";
+  var components = [];
+  for (key in props.ratings) {
+    components.unshift(<Starprog key={key} star_rating={key} total={props.total} amount={props.ratings[key]} />)
+  }
   return (
     <div id="stars-view">
-      {props.avg} STARS
-      <div>
-        1 Stars: <ProgressBar striped now={40} />
-        2 Stars: <ProgressBar striped now={20} />
-        3 Stars: <ProgressBar striped now={60} />
-        4 Stars: <ProgressBar striped now={60} />
-        5 Stars: <ProgressBar striped now={80} />
-      </div>
+      {props.avg}
+      {components}
     </div>
   )
 };

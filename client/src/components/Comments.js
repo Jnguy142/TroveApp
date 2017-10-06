@@ -4,7 +4,7 @@ var Comment = (props) => {
   return (
     <div>
       <p>
-        <span>{props.reviewee_id}  </span>
+        <span>{props.reviewee_id} : </span>
         {props.comment}
       </p>
     </div>

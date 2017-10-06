@@ -78,6 +78,7 @@ module.exports = {
           reviewee_id: user_name,} 
         }).then( (reviewInfo) => {
           if (reviewInfo === null) {
+            console.log('i made it past first two tests');
             Reviews.create({
               rentee_id: req.params.rentee_id,
               reviewee_id: user_name,
@@ -87,6 +88,7 @@ module.exports = {
               res.status(201).send(created.dataValues);
             })
             .catch((err) => {
+              console.log(err);
               res.status(404).send('unable to store comment in database');
             })
           } else {

@@ -942,3 +942,25 @@ hr {
 #submit-review {
   line-height: 2;
 }
+
+.progress {
+  background-color: #eae4c1;
+  width: 40%;
+}
+
+.progress-bar {
+  background-color: #c1ad1a;
+}
+
+#review-container {
+  margin-top: 4%;
+}
+
+.star-img {
+  width: 25px;
+  height: 25px;
+}
+
+.stars-and-bar{
+  margin-top: 10px;
+}
