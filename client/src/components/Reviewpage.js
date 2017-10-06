@@ -36,7 +36,6 @@ class Reviewpage extends React.Component {
         }
         denom = denom === 0 ? 1 : denom;
         avg = (avg / denom).toFixed(2);
-        console.log(avg);
         this.setState({
           reviews: reviewsInfo.data.reviews,
           rating: ratings,
@@ -52,7 +51,7 @@ class Reviewpage extends React.Component {
         var key = 0;
         return (
             <div id="review-component">
-                <Starsview ratings={this.state.rating}/>
+                <Starsview avg={this.state.avg} ratings={this.state.rating}/>
                 { this.state.reviews.map((comment) => {
                   key = key + 1;
                   return (<Comment key={key} comment={comment.message} reviewee_id={comment.reviewee_id}/>);

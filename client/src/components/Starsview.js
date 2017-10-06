@@ -3,7 +3,7 @@ import React from 'react'
 var Starsview = (props) => {
   return (
     <div id="stars-view">
-      STARS GO HERE 
+      {props.avg} STARS
       <ul>
         <li>1 : {props.ratings[1]}</li>
         <li>2 : {props.ratings[2]}</li>

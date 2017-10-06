@@ -23,6 +23,7 @@
     "pg": "^7.3.0",
     "react": "^15.6.1",
     "react-addons-shallow-compare": "^15.6.2",
+    "react-bootstrap": "^0.31.3",
     "react-bootstrap-modal": "^3.0.1",
     "react-custom-scrollbars": "^4.1.2",
     "react-dates": "^12.6.0",

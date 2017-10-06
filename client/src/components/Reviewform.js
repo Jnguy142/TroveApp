@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Button, FormGroup, FormControl} from 'react-bootstrap';
 
 class Reviewform extends React.Component {
   constructor(props) {
@@ -41,11 +42,10 @@ class Reviewform extends React.Component {
 
   render () {
     return(
-      <form id="user-review-form">
-          <textarea id="user-review">
-          </textarea>
-          <span><button onClick={this.onClickHandler} id="submit-review">Submit</button></span>
-      </form>
+      <FormGroup id="user-review-form">
+          <FormControl id="user-review" componentClass="textarea" />
+          <Button onClick={this.onClickHandler} id="submit-review" bsStyle="primary" bsSize="large" >Submit</Button>
+      </FormGroup>
       )
   }
 }
