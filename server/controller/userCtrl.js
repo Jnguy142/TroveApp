@@ -100,16 +100,38 @@ module.exports = {
     .catch(err => res.status(404).send(err))
   },
   postRating: (req, res) => {
-    console.log('vote post req recieved');
+    var email = req.body.Reviewer_email;
+    var id = req.body.Reviewee_id
     Ratings.findOne({ 
       where: {  
-        Reviewer_email: req.body.Reviewer_email,
-        Reviewee_id: req.body.Reviewee_id,
+        Reviewer_email: email,
+        Reviewee_id: id,
       }
     })
     .then((queriedInfo) => {
-      console.log(queriedInfo);
-      res.status(201).send('vote recieved');
+      if (queriedInfo) {
+        var requestedRating = parseInt(req.body.Rating);
+        var storedRating = parseInt(queriedInfo.dataValues.Rating);
+        if(requestedRating === storedRating) {
+          res.status(201).send('you already voted for this user');
+        } else {
+          Ratings.update({Rating: requestedRating},{ 
+            where: { Reviewer_email: email, Reviewee_id: id}})
+            .then((update) => res.status(201).send('success'))
+            .catch((err) => res.status(404).send('failure'));
+        }
+      } else {
+        Ratings.create({ 
+          Reviewer_email: email,
+          Reviewee_id: id,
+          Rating: req.body.Rating,
+        })
+        .then((created) => {
+          res.status(201).send(created.dataValues);
+        })
+        .catch((err) => res.status(404).send(err));
+      }
+
     })
     .catch((err) => res.status(404).send(err))
   }

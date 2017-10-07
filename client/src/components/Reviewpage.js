@@ -60,8 +60,8 @@ class Reviewpage extends React.Component {
           Reviewee_id: wardrobeUser,
           Rating: rating,
         }
-      }).then((data) => {
-        console.log('im voting');
+      }).then((postedVote) => {
+        console.log(postedVote.data);
       })
       .catch((err) => {
         console.log('error while voting')
