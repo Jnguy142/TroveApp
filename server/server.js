@@ -6,7 +6,7 @@ const db = require('../db/db');
 require('../db/model/dataModel')
 const route = require('../server/router/routes')
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const app = express()
 .use(parser.json())
