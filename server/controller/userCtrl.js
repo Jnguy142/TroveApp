@@ -49,10 +49,8 @@ module.exports = {
       .then((ratingInfo) => {
         for( var i = 0; i < ratingInfo.length; i++ ) {
           var rating = ratingInfo[i].dataValues.Rating;
-          console.log(rating);
           data.ratings[rating]++;
         }
-        console.log(data.ratings);
         res.status(200).send(data);
       })
       .catch((err) => res.status(404).send('error getting ratings'))
@@ -78,7 +76,6 @@ module.exports = {
           reviewee_id: user_name,} 
         }).then( (reviewInfo) => {
           if (reviewInfo === null) {
-            console.log('i made it past first two tests');
             Reviews.create({
               rentee_id: req.params.rentee_id,
               reviewee_id: user_name,

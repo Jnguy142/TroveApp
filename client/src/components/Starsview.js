@@ -10,7 +10,7 @@ var Starsview = (props) => {
   }
   return (
     <div id="stars-view">
-      {props.avg}
+      {props.avg} Total Votes: {props.total}
       {components}
     </div>
   )
