@@ -49,11 +49,15 @@ class Reviewpage extends React.Component {
       });
     }
 
+    onClickHandler (event) {
+      console.log(event.target.id);
+    }
+
     render () {
         var key = 0;
         return (
             <div id="review-component"> 
-              <Starsview avg={this.state.avg} ratings={this.state.rating} total={this.state.total} />
+              <Starsview onClickHandler={this.onClickHandler} avg={this.state.avg} ratings={this.state.rating} total={this.state.total} />
               <div id="review-container">
                 { this.state.reviews.map((comment) => {
                   key = key + 1;

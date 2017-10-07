@@ -6,7 +6,7 @@ var Starsview = (props) => {
   var key = "";
   var components = [];
   for (key in props.ratings) {
-    components.unshift(<Starprog key={key} star_rating={key} total={props.total} amount={props.ratings[key]} />)
+    components.unshift(<Starprog onClickHandler={props.onClickHandler} key={key} star_rating={key} total={props.total} amount={props.ratings[key]} />)
   }
   return (
     <div id="stars-view">

@@ -5,7 +5,8 @@ var Starprog = (props) => {
   var imgurl = 'https://cdn2.iconfinder.com/data/icons/flat-christmas-icons/600/xmas-icons-09-512.png';
   var starimgs = [];
   for (var i = 0; i < props.star_rating; i++) {
-    starimgs.push(<Image className="star-img" src={`${imgurl}`} rounded />);
+    starimgs.push(<Image id={props.star_rating} onClick={props.onClickHandler} 
+    className="star-img" key={i} src={`${imgurl}`} rounded />);
   }
   return (
     <div className="stars-and-bar">
