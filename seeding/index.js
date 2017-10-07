@@ -3,5 +3,5 @@ module.exports = (table, seedData, tableName) => {
     .then(() => {
       console.log(`data successfully seeded for ${tableName}`);
     })
-    .catch(err => console.log(`error seeding data for ${tableName}`));
+    .catch(err => console.log(`error seeding data for ${tableName}`, err));
 };

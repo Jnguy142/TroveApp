@@ -10,7 +10,7 @@ var Starprog = (props) => {
   return (
     <div className="stars-and-bar">
       {starimgs}
-      <ProgressBar striped now={40} />
+      <ProgressBar striped now={Math.floor((props.amount / props.total) * 100)} />
     </div>
   );
 }

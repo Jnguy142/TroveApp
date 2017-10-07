@@ -14,6 +14,6 @@ module.exports = [
   {
     userName: 'kokoro',
     userEmail: 'hhw@gmail.com',
-  }
+  },
 
 ]
