@@ -11,6 +11,9 @@ router.route('/')
 router.route('/item/:id')
   .get(itemCtrl.getItem);
 
+router.route('/user/rate')
+  .post(userCtrl.postRating);
+
 router.route('/user')
   .post(userCtrl.addUser);
 

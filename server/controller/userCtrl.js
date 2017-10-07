@@ -98,5 +98,19 @@ module.exports = {
       }
     })
     .catch(err => res.status(404).send(err))
+  },
+  postRating: (req, res) => {
+    console.log('vote post req recieved');
+    Ratings.findOne({ 
+      where: {  
+        Reviewer_email: req.body.Reviewer_email,
+        Reviewee_id: req.body.Reviewee_id,
+      }
+    })
+    .then((queriedInfo) => {
+      console.log(queriedInfo);
+      res.status(201).send('vote recieved');
+    })
+    .catch((err) => res.status(404).send(err))
   }
 }

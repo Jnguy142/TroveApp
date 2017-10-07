@@ -15,6 +15,8 @@ class Reviewpage extends React.Component {
         avg: 0,
       };
       this.fetch = this.fetch.bind(this);
+      this.onClickHandler = this.onClickHandler.bind(this);
+      this.postRating = this.postRating.bind(this);
   }
 
     componentDidMount() {
@@ -49,8 +51,29 @@ class Reviewpage extends React.Component {
       });
     }
 
+    postRating (reviewerEmail, wardrobeUser, rating) {
+      axios({
+        method: 'post',
+        url:`/api/user/rate`,
+        data: {
+          Reviewer_email: reviewerEmail,
+          Reviewee_id: wardrobeUser,
+          Rating: rating,
+        }
+      }).then((data) => {
+        console.log('im voting');
+      })
+      .catch((err) => {
+        console.log('error while voting')
+      })
+    }
+
     onClickHandler (event) {
-      console.log(event.target.id);
+      var rating = event.target.id;
+      var wardrobeUser = this.props.wardrobe_user_id;
+      var reviewerEmail = this.props.user_email;
+      this.postRating(reviewerEmail, wardrobeUser, rating);
+
     }
 
     render () {
