@@ -113,11 +113,11 @@ module.exports = {
         var requestedRating = parseInt(req.body.Rating);
         var storedRating = parseInt(queriedInfo.dataValues.Rating);
         if(requestedRating === storedRating) {
-          res.status(201).send('you already voted for this user');
+          res.status(201).send('You Already Gave This User That Rating! WAT R U DOING ლ(ಠ益ಠლ)');
         } else {
           Ratings.update({Rating: requestedRating},{ 
             where: { Reviewer_email: email, Reviewee_id: id}})
-            .then((update) => res.status(201).send('success'))
+            .then((update) => res.status(201).send('You Just Updated Your Vote! (⌐■_■)'))
             .catch((err) => res.status(404).send('failure'));
         }
       } else {
@@ -127,7 +127,7 @@ module.exports = {
           Rating: req.body.Rating,
         })
         .then((created) => {
-          res.status(201).send(created.dataValues);
+          res.status(201).send('Thank You For Rating! ◕‿↼');
         })
         .catch((err) => res.status(404).send(err));
       }

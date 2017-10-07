@@ -1,12 +1,17 @@
 import React from 'react';
 import axios from 'axios';
-import { Button, FormGroup, FormControl, Grid, Row, Col} from 'react-bootstrap';
+import { Button, FormGroup, FormControl, Grid, Row, Col, Modal} from 'react-bootstrap';
 
 class Reviewform extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      showPopup:false,
+      popupInfo: '',
+    }
     this.postReview = this.postReview.bind(this);
     this.onClickHandler = this.onClickHandler.bind(this);
+    this.closePopup = this.closePopup.bind(this);
   }
 
   onClickHandler (event) {
@@ -28,11 +33,15 @@ class Reviewform extends React.Component {
       }
     }).then( (response) => {
         if (response.data === 0) {    
-          alert('You cannot give yourself a review, Kiddo');
+          this.setState({ 
+            showPopup: true, 
+            popupInfo:'You cannot give yourself a review, Kiddo'});
         } else if (response.data === 1) {
-          alert('You can only review a user once, buster');
+          this.setState({ showPopup: true, 
+            popupInfo:'You can only review a user once, buster'});
         }else { 
-          alert('You successfully posted a review');
+          this.setState({ showPopup: true, 
+            popupInfo:'You successfully posted a review'});
         }
       })
       .catch((err) => {
@@ -40,16 +49,29 @@ class Reviewform extends React.Component {
     }) 
   }
 
+  closePopup () {
+    this.setState({showPopup: false});
+  }
+
   render () {
     return(
-      <FormGroup id="user-review-form">
-        <Grid id="review-form-grid">
-          <Row id="review-form-row">
-            <Col xs={2} md={5}><FormControl id="user-review" componentClass="textarea" /></Col>
-            <Col xs={6} md={4}><Button onClick={this.onClickHandler} id="submit-review" bsStyle="primary" bsSize="large" >Submit</Button></Col>
-          </Row>
-        </Grid>
-      </FormGroup>
+      <div>
+        <FormGroup id="user-review-form">
+          <Grid id="review-form-grid">
+            <Row id="review-form-row">
+              <Col xs={2} md={5}><FormControl id="user-review" componentClass="textarea" /></Col>
+              <Col xs={6} md={4}><Button onClick={this.onClickHandler} id="submit-review" bsStyle="primary" bsSize="large" >Submit</Button></Col>
+            </Row>
+          </Grid>
+        </FormGroup>
+        <Modal show={this.state.showPopup} onHide={this.closePopup}>
+            <Modal.Header closeButton>
+              <Modal.Body>
+                {this.state.popupInfo}
+              </Modal.Body>
+            </Modal.Header>
+          </Modal>
+      </div>
       );
   }
 }

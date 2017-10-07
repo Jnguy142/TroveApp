@@ -932,6 +932,7 @@ hr {
   padding-bottom: 15%;
 }
 
+/* ------ WARDROBE COMMENT CSS ------- */
 #review-form-grid {
   margin-right: 0px;
   margin-left: 0px;
@@ -963,4 +964,40 @@ hr {
 
 .stars-and-bar{
   margin-top: 10px;
+}
+
+.user-comment {
+  margin-bottom: 2px;
+}
+
+.modal-backdrop.fade.in {
+  opacity: .5;
+}
+
+.fade {
+  opacity:1;
+  transition-property: opacity;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+  transition-delay: initial
+}
+
+.star-ratings-sprite {
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
+  font-size: 0;
+  height: 21px;
+  line-height: 0;
+  overflow: hidden;
+  text-indent: -999em;
+  width: 110px;
+  margin: 0;
+  
+}
+
+.star-ratings-sprite-rating {
+    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
+    background-position: 0 100%;
+    float: left;
+    height: 21px;
+    display:block;
 }

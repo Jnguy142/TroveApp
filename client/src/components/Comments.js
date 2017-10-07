@@ -3,7 +3,7 @@ import React from 'react';
 var Comment = (props) => {
   return (
     <div>
-      <p>
+      <p className="user-comment">
         {props.reviewee_id} :
       </p>
       <p>
